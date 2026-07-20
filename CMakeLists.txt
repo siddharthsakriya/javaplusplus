@@ -9,6 +9,7 @@ find_package(JNI REQUIRED)
 add_library(JavaPlusPlus SHARED 
     src/Agent.cpp
     src/Logger.cpp
+    src/SymbolCache.cpp
 )
 
 target_include_directories(JavaPlusPlus PRIVATE ${JNI_INCLUDE_DIRS})

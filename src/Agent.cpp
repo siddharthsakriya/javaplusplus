@@ -6,15 +6,35 @@
 
 #include "Logger.hpp"
 #include "JvmtiHelper.hpp"
+#include "SymbolCache.hpp"
 
+// JVMTI callbacks
 
 static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
     LOG_INFO("VM initialized.");
+
+    jclass mainClass = jni->FindClass("Main");
+    if (mainClass == nullptr) {
+        LOG_ERROR("Could not find Main class to test symbol cache.");
+        return;
+    }
+
+    jmethodID mainMethod = jni->GetStaticMethodID(mainClass, "main", "([Ljava/lang/String;)V");
+    if (mainMethod == nullptr) {
+        LOG_ERROR("Could not find Main.main method.");
+        return;
+    }
+
+    const MethodInfo& info = SymbolCache::instance().get_or_resolve(jvmti, mainMethod);
+    
+    LOG_INFO("Symbol Cache Test -> Resolved method: " + info.class_name + " :: " + info.method_name + " " + info.signature);
 }
 
 static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
     LOG_INFO("VM shutting down.");
 }
+
+// additional methods 
 
 void parse_options(const char* options) {
     if (options == nullptr) return;
