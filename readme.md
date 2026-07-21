@@ -45,7 +45,7 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
   - Thread-safe `SymbolCache` singleton using `std::shared_mutex`.
   - Resolves `jmethodID` to `MethodInfo` (class name, method name, signature).
   - Manages JVMTI memory allocation/deallocation safely.
-- [ ] **Section 3 — Thread-local agent state**
+- [x] **Section 3 — Thread-local agent state**
   - `ThreadManager` to track thread lifecycles.
   - `ThreadState` struct attached via JVMTI Thread Local Storage (`SetThreadLocalStorage`).
   - Assign sequential IDs and capture thread names.
