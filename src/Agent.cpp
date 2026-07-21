@@ -1,4 +1,3 @@
-// src/Agent.cpp
 #include <jvmti.h>
 #include <iostream>
 #include <cstring>
@@ -17,10 +16,9 @@ int64_t get_current_time_ns() {
     ).count();
 }
 
-// jvm callback functions
 static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
     LOG_INFO("VM initialized.");
-    ThreadManager::instance().on_thread_start(jvmti, jni, thread);
+    ThreadManager::getInstance().on_thread_start(jvmti, jni, thread);
 }
 
 static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
@@ -28,16 +26,17 @@ static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
 }
 
 static void JNICALL cbThreadStart(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
-    ThreadManager::instance().on_thread_start(jvmti, jni, thread);
+    ThreadManager::getInstance().on_thread_start(jvmti, jni, thread);
 }
 
 static void JNICALL cbThreadEnd(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
-    ThreadManager::instance().on_thread_end(jvmti, jni, thread);
+    ThreadManager::getInstance().on_thread_end(jvmti, jni, thread);
 }
 
 static void JNICALL cbMethodEntry(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread, jmethodID method) {
     ThreadState* state = ThreadManager::get_state(jvmti, thread);
     if (state == nullptr) return;
+
     Frame frame;
     frame.method_id = method;
     frame.start_time_ns = get_current_time_ns();
@@ -47,8 +46,8 @@ static void JNICALL cbMethodEntry(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread, 
 
 static void JNICALL cbMethodExit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread, jmethodID method, jboolean was_popped_by_exception, jvalue return_value) {
     ThreadState* state = ThreadManager::get_state(jvmti, thread);
-
     if (state == nullptr) return;
+
     if (state->call_stack.empty()) return;
 
     Frame frame = state->call_stack.back();
@@ -56,17 +55,15 @@ static void JNICALL cbMethodExit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread, j
 
     int64_t end_time_ns = get_current_time_ns();
     int64_t inclusive_time = end_time_ns - frame.start_time_ns;
-
     int64_t exclusive_time = inclusive_time - frame.child_time_ns;
 
     if (!state->call_stack.empty()) {
         state->call_stack.back().child_time_ns += inclusive_time;
     }
 
-    MethodStatsRegistry::instance().add_stats(method, inclusive_time, exclusive_time);
+    MethodStatsRegistry::getInstance().add_stats(method, inclusive_time, exclusive_time);
 }
 
-// parse options 
 void parse_options(const char* options) {
     if (options == nullptr) return;
     std::string opts(options);
@@ -77,12 +74,10 @@ void parse_options(const char* options) {
         size_t end = opts.find(',', start);
         if (end == std::string::npos) end = opts.length();
         std::string path = opts.substr(start, end - start);
-        Logger::instance().init(path);
+        Logger::getInstance().init(path);
         LOG_INFO("Logger initialized to file: " + path);
     }
 }
-
-// entry point 
 
 extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* reserved) {
     LOG_INFO("Agent_OnLoad called.");
@@ -97,7 +92,6 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
 
     jvmtiCapabilities capabilities;
     memset(&capabilities, 0, sizeof(capabilities));
-    
     capabilities.can_generate_method_entry_events = 1;
     capabilities.can_generate_method_exit_events = 1;
     
@@ -106,34 +100,22 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
 
     jvmtiEventCallbacks callbacks;
     memset(&callbacks, 0, sizeof(callbacks));
-    
     callbacks.VMInit = &cbVMInit;
     callbacks.VMDeath = &cbVMDeath;
     callbacks.ThreadStart = &cbThreadStart;
     callbacks.ThreadEnd = &cbThreadEnd;
-    callbacks.MethodEntry = &cbMethodEntry; 
-    callbacks.MethodExit = &cbMethodExit;   
+    callbacks.MethodEntry = &cbMethodEntry;
+    callbacks.MethodExit = &cbMethodExit;
 
     err = jvmti->SetEventCallbacks(&callbacks, sizeof(callbacks));
     CHECK_JVMTI(jvmti, err, "SetEventCallbacks");
 
-    err = jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_VM_INIT, nullptr);
-    CHECK_JVMTI(jvmti, err, "SetEventNotificationMode(VM_INIT)");
-
-    err = jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_VM_DEATH, nullptr);
-    CHECK_JVMTI(jvmti, err, "SetEventNotificationMode(VM_DEATH)");
-
-    err = jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_THREAD_START, nullptr);
-    CHECK_JVMTI(jvmti, err, "SetEventNotificationMode(THREAD_START)");
-
-    err = jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_THREAD_END, nullptr);
-    CHECK_JVMTI(jvmti, err, "SetEventNotificationMode(THREAD_END)");
-
-    err = jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_ENTRY, nullptr);
-    CHECK_JVMTI(jvmti, err, "SetEventNotificationMode(METHOD_ENTRY)");
-
-    err = jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_EXIT, nullptr);
-    CHECK_JVMTI(jvmti, err, "SetEventNotificationMode(METHOD_EXIT)");
+    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_VM_INIT, nullptr);
+    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_VM_DEATH, nullptr);
+    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_THREAD_START, nullptr);
+    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_THREAD_END, nullptr);
+    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_ENTRY, nullptr);
+    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_EXIT, nullptr);
 
     LOG_INFO("Successfully loaded and registered callbacks.");
     return JNI_OK;

@@ -8,8 +8,8 @@
 struct MethodStats {
     int call_count = 0;
     int64_t total_time_ns = 0; //inclusive time (inc methods called)
-    int64_t total_time_ns = 0; //exclusive time  (exec time of curr method)
-}
+    int64_t self_time_ns = 0; //exclusive time  (exec time of curr method)
+};
 
 class MethodStatsRegistry {
     public:
@@ -34,5 +34,5 @@ class MethodStatsRegistry {
         MethodStatsRegistry() = default;
         std::unordered_map<jmethodID, MethodStats> stats_map;
         std::mutex stats_mutex;
-}
+};
 
