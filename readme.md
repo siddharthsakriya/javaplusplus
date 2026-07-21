@@ -51,7 +51,7 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
   - Assign sequential IDs and capture thread names.
 
 ### Instrumentation & Timing
-- [ ] **Section 4 — Method entry/exit instrumentation**
+- [x] **Section 4 — Method entry/exit instrumentation**
   - Enable `MethodEntry` and `MethodExit` events.
   - Maintain per-thread call stacks in `ThreadState`.
   - Compute inclusive and exclusive execution times.
