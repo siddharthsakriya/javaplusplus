@@ -10,6 +10,7 @@
 #include "ThreadManager.hpp"
 #include "MethodStats.hpp"
 #include "Clock.hpp"
+#include "Reporter.hpp"
 
 int64_t get_current_time_ns() {
     return Clock::get_wall_time_ns();
@@ -22,6 +23,7 @@ static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
 
 static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
     LOG_INFO("VM shutting down.");
+    Reporter::dump_report(jvmti);
 }
 
 static void JNICALL cbThreadStart(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
