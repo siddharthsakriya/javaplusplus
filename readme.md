@@ -55,7 +55,7 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
   - Enable `MethodEntry` and `MethodExit` events.
   - Maintain per-thread call stacks in `ThreadState`.
   - Compute inclusive and exclusive execution times.
-- [ ] **Section 5 — Time sources**
+- [x] **Section 5 — Time sources**
   - Abstract `Clock` interface for monotonic wall-clock time.
   - Per-thread CPU time tracking via `GetCurrentThreadCpuTime`.
 - [ ] **Section 6 — First output: text + JSON dump**
