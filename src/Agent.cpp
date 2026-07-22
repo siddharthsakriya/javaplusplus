@@ -9,11 +9,10 @@
 #include "SymbolCache.hpp"
 #include "ThreadManager.hpp"
 #include "MethodStats.hpp"
+#include "Clock.hpp"
 
 int64_t get_current_time_ns() {
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(
-        std::chrono::steady_clock::now().time_since_epoch()
-    ).count();
+    return Clock::get_wall_time_ns();
 }
 
 static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
@@ -94,7 +93,8 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
     memset(&capabilities, 0, sizeof(capabilities));
     capabilities.can_generate_method_entry_events = 1;
     capabilities.can_generate_method_exit_events = 1;
-    
+    capabilities.can_get_current_thread_cpu_time = 1; // Fixed capability   
+
     jvmtiError err = jvmti->AddCapabilities(&capabilities);
     CHECK_JVMTI(jvmti, err, "AddCapabilities");
 
