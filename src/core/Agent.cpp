@@ -11,6 +11,7 @@
 #include "MethodStats.hpp"
 #include "Clock.hpp"
 #include "Reporter.hpp"
+#include "Sampler.hpp"
 
 int64_t get_current_time_ns() {
     return Clock::get_wall_time_ns();
@@ -19,10 +20,12 @@ int64_t get_current_time_ns() {
 static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
     LOG_INFO("VM initialized.");
     ThreadManager::getInstance().on_thread_start(jvmti, jni, thread);
+    Sampler::getInstance().start(jvmti, jni);
 }
 
 static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
     LOG_INFO("VM shutting down.");
+    Sampler::getInstance().stop();
     Reporter::dump_report(jvmti);
 }
 
@@ -32,37 +35,6 @@ static void JNICALL cbThreadStart(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) 
 
 static void JNICALL cbThreadEnd(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
     ThreadManager::getInstance().on_thread_end(jvmti, jni, thread);
-}
-
-static void JNICALL cbMethodEntry(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread, jmethodID method) {
-    ThreadState* state = ThreadManager::get_state(jvmti, thread);
-    if (state == nullptr) return;
-
-    Frame frame;
-    frame.method_id = method;
-    frame.start_time_ns = get_current_time_ns();
-    frame.child_time_ns = 0;
-    state->call_stack.push_back(frame);
-}
-
-static void JNICALL cbMethodExit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread, jmethodID method, jboolean was_popped_by_exception, jvalue return_value) {
-    ThreadState* state = ThreadManager::get_state(jvmti, thread);
-    if (state == nullptr) return;
-
-    if (state->call_stack.empty()) return;
-
-    Frame frame = state->call_stack.back();
-    state->call_stack.pop_back();
-
-    int64_t end_time_ns = get_current_time_ns();
-    int64_t inclusive_time = end_time_ns - frame.start_time_ns;
-    int64_t exclusive_time = inclusive_time - frame.child_time_ns;
-
-    if (!state->call_stack.empty()) {
-        state->call_stack.back().child_time_ns += inclusive_time;
-    }
-
-    MethodStatsRegistry::getInstance().add_stats(method, inclusive_time, exclusive_time);
 }
 
 void parse_options(const char* options) {
@@ -95,7 +67,7 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
     memset(&capabilities, 0, sizeof(capabilities));
     capabilities.can_generate_method_entry_events = 1;
     capabilities.can_generate_method_exit_events = 1;
-    capabilities.can_get_current_thread_cpu_time = 1; // Fixed capability   
+    capabilities.can_get_current_thread_cpu_time = 1;
 
     jvmtiError err = jvmti->AddCapabilities(&capabilities);
     CHECK_JVMTI(jvmti, err, "AddCapabilities");
