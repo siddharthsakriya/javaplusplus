@@ -6,12 +6,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(JNI REQUIRED)
 
-add_library(JavaPlusPlus SHARED 
-    src/Agent.cpp
-    src/Logger.cpp
-    src/SymbolCache.cpp
-    src/ThreadManager.cpp
-    src/Reporter.cpp
+add_library(javaplusplus SHARED 
+    src/core/Agent.cpp
+    src/utils/Logger.cpp
+    src/profiling/SymbolCache.cpp
+    src/profiling/ThreadManager.cpp
+    src/profiling/Reporter.cpp
 )
 
-target_include_directories(JavaPlusPlus PRIVATE ${JNI_INCLUDE_DIRS})
+target_include_directories(javaplusplus PRIVATE 
+    ${JNI_INCLUDE_DIRS} 
+    src
+    src/core
+    src/utils
+    src/profiling
+)
+
+set_target_properties(javaplusplus PROPERTIES PREFIX "")
