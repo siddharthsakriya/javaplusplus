@@ -11,6 +11,7 @@ add_library(JavaPlusPlus SHARED
     src/Logger.cpp
     src/SymbolCache.cpp
     src/ThreadManager.cpp
+    src/Reporter.cpp
 )
 
 target_include_directories(JavaPlusPlus PRIVATE ${JNI_INCLUDE_DIRS})
