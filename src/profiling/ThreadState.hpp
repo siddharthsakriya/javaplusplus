@@ -2,17 +2,17 @@
 #pragma once
 #include <jvmti.h>
 #include <string>
-#include <vector>
-
-struct Frame {
-    jmethodID method_id;
-    int64_t start_time_ns;
-    int64_t child_time_ns= 0;
-};
 
 struct ThreadState {
     int id;
     std::string name;
-    int64_t start_time_ns;    
-    std::vector<Frame> call_stack;
+    int64_t start_time_ns;
+};
+
+struct ThreadSummary {
+    int id;
+    std::string name;
+    int64_t start_time_ns;
+    int64_t end_time_ns;
+    int64_t time_alive_ns;
 };
