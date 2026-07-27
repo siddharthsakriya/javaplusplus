@@ -4,16 +4,13 @@
 #include <mutex>
 #include <unordered_map>
 #include <jvmti.h>
-#include <limits.h>
-
-
 
 struct MethodStats {
     int call_count = 0;
     int64_t total_time_ns = 0; //inclusive time (inc methods called)
     int64_t self_time_ns = 0; //exclusive time  (exec time of curr method)
     int64_t max_self_time_ns = 0;
-    int64_t min_self_time_ns = INT_MAX;
+    int64_t min_self_time_ns = INT64_MAX;
 };
 
 class MethodStatsRegistry {
