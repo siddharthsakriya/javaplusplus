@@ -51,23 +51,25 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
   - Assign sequential IDs and capture thread names.
 
 ### Instrumentation & Timing
-- [x] **Section 4 — Method entry/exit instrumentation**
+- [x] **Section 4 — Method entry/exit instrumentation** *(superseded — see note)*
   - Enable `MethodEntry` and `MethodExit` events.
   - Maintain per-thread call stacks in `ThreadState`.
   - Compute inclusive and exclusive execution times.
-- [x] **Section 5 — Time sources**
+  - **Note:** this approach — and the capabilities/callbacks it needed — was later removed from `Agent.cpp` in favor of statistical sampling (Section 7). Kept checked as a historical record of what was built; it does not reflect current agent behavior.
+- [x] **Section 5 — Time sources** *(partially reworked — see note)*
   - Abstract `Clock` interface for monotonic wall-clock time.
   - Per-thread CPU time tracking via `GetCurrentThreadCpuTime`.
+  - **Note:** `GetCurrentThreadCpuTime` was the *right* call for Section 4's design, since `MethodEntry`/`MethodExit` callbacks run on the thread that triggered them — "current thread" was the target thread. It does **not** work from the sampler thread, which observes *other* threads: that needs `GetThreadCpuTime(thread, ...)` plus the `can_get_thread_cpu_time` capability (different from `can_get_current_thread_cpu_time`). `Clock.hpp` was removed as dead code once Section 4 was ripped out; a per-thread CPU-time baseline is being rebuilt directly in `ThreadState`/`Sampler` as part of Section 7.
 - [ ] **Section 6 — First output: text + JSON dump**
   - Aggregate method statistics (`MethodStats`: count, total, self, min, max).
   - Dump top methods and per-thread summaries on `VMDeath`.
   - Implement basic JSON export.
 
 ### Statistical Profiling
-- [ ] **Section 7 — CPU sampling thread**
-  - Native background thread for statistical sampling.
-  - Use `SuspendThread`/`GetStackTrace`/`ResumeThread` (or `GetAllStackTraces`).
-  - Aggregate method frequency to find hot methods.
+- [ ] **Section 7 — CPU sampling thread** *(in progress)*
+  - Native background thread for statistical sampling — done, using `GetAllThreads` + `GetThreadState` + `GetStackTrace` on runnable threads directly, without `SuspendThread`/`ResumeThread`: JVMTI permits `GetStackTrace` on a live thread, so explicit suspension was dropped to avoid the extra overhead/complexity.
+  - Aggregate method frequency to find hot methods — done (`frames[0]` per sample).
+  - **Pulled forward from Section 10:** attribute real per-sample time via `GetThreadCpuTime` deltas against a per-thread baseline, walking the *full* captured stack — inclusive time to every frame, exclusive time to the top frame only. In progress.
 - [ ] **Section 8 — Call tree + flame graph output**
   - Build a Trie structure keyed on `methodId` sequences.
   - Output indented call trees (count, inclusive %, exclusive %).
@@ -77,9 +79,9 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
 - [ ] **Section 9 — Allocation profiling**
   - `SampledObjectAlloc` events (Java 9+) or `VMObjectAlloc`.
   - Aggregate by class (count + bytes) and allocation call site.
-- [ ] **Section 10 — Thread state + per-thread CPU**
-  - Poll `GetThreadState` and `GetThreadCpuTime` via the sampler thread.
-  - Bucket samples into `RUNNABLE`, `BLOCKED`, `WAITING`, etc.
+- [ ] **Section 10 — Thread state buckets**
+  - Bucket samples into `RUNNABLE`, `BLOCKED`, `WAITING`, etc. using `GetThreadState` (already polled by the Section 7 sampler).
+  - *(CPU-time polling itself moved into Section 7 — it's needed there for time attribution, not just bucketing.)*
 - [ ] **Section 11 — Monitor contention**
   - `MonitorContendedEnter`/`Entered` and `MonitorWait`/`Waited` events.
   - Track blocked and waiting durations per lock/thread.

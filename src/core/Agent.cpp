@@ -61,22 +61,14 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
         return JNI_ERR;
     }
 
-    jvmtiCapabilities capabilities;
-    memset(&capabilities, 0, sizeof(capabilities));
-    // We do NOT request method entry/exit events anymore!
-    
-    jvmtiError err = jvmti->AddCapabilities(&capabilities);
-    CHECK_JVMTI(jvmti, err, "AddCapabilities");
-
     jvmtiEventCallbacks callbacks;
     memset(&callbacks, 0, sizeof(callbacks));
     callbacks.VMInit = &cbVMInit;
     callbacks.VMDeath = &cbVMDeath;
     callbacks.ThreadStart = &cbThreadStart;
     callbacks.ThreadEnd = &cbThreadEnd;
-    // We do NOT register MethodEntry or MethodExit callbacks anymore!
 
-    err = jvmti->SetEventCallbacks(&callbacks, sizeof(callbacks));
+    jvmtiError err = jvmti->SetEventCallbacks(&callbacks, sizeof(callbacks));
     CHECK_JVMTI(jvmti, err, "SetEventCallbacks");
 
     jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_VM_INIT, nullptr);
