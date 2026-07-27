@@ -35,7 +35,7 @@ class MethodStatsRegistry {
         }
 
         const std::unordered_map<jmethodID, MethodStats>& get_stats() const {
-        return stats_map;
+            return stats_map;
         }   
     
     private:
