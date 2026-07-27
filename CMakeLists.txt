@@ -12,6 +12,7 @@ add_library(javaplusplus SHARED
     src/profiling/SymbolCache.cpp
     src/profiling/ThreadManager.cpp
     src/profiling/Reporter.cpp
+    src/profiling/Sampler.cpp
 )
 
 target_include_directories(javaplusplus PRIVATE 

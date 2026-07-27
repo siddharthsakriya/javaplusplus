@@ -2,29 +2,27 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-#include <chrono>
 
-#include "Logger.hpp"
-#include "JvmtiHelper.hpp"
-#include "SymbolCache.hpp"
-#include "ThreadManager.hpp"
-#include "MethodStats.hpp"
-#include "Clock.hpp"
-#include "Reporter.hpp"
-#include "Sampler.hpp"
-
-int64_t get_current_time_ns() {
-    return Clock::get_wall_time_ns();
-}
+#include "utils/Logger.hpp"
+#include "utils/JvmtiHelper.hpp"
+#include "profiling/SymbolCache.hpp"
+#include "profiling/ThreadManager.hpp"
+#include "profiling/MethodStats.hpp"
+#include "profiling/Reporter.hpp"
+#include "profiling/Sampler.hpp"
 
 static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
     LOG_INFO("VM initialized.");
     ThreadManager::getInstance().on_thread_start(jvmti, jni, thread);
+    
+    // Start the statistical sampler!
     Sampler::getInstance().start(jvmti, jni);
 }
 
 static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
     LOG_INFO("VM shutting down.");
+    
+    // Stop the sampler before we generate the report
     Sampler::getInstance().stop();
     Reporter::dump_report(jvmti);
 }
@@ -65,10 +63,8 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
 
     jvmtiCapabilities capabilities;
     memset(&capabilities, 0, sizeof(capabilities));
-    capabilities.can_generate_method_entry_events = 1;
-    capabilities.can_generate_method_exit_events = 1;
-    capabilities.can_get_current_thread_cpu_time = 1;
-
+    // We do NOT request method entry/exit events anymore!
+    
     jvmtiError err = jvmti->AddCapabilities(&capabilities);
     CHECK_JVMTI(jvmti, err, "AddCapabilities");
 
@@ -78,8 +74,7 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
     callbacks.VMDeath = &cbVMDeath;
     callbacks.ThreadStart = &cbThreadStart;
     callbacks.ThreadEnd = &cbThreadEnd;
-    callbacks.MethodEntry = &cbMethodEntry;
-    callbacks.MethodExit = &cbMethodExit;
+    // We do NOT register MethodEntry or MethodExit callbacks anymore!
 
     err = jvmti->SetEventCallbacks(&callbacks, sizeof(callbacks));
     CHECK_JVMTI(jvmti, err, "SetEventCallbacks");
@@ -88,8 +83,7 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
     jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_VM_DEATH, nullptr);
     jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_THREAD_START, nullptr);
     jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_THREAD_END, nullptr);
-    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_ENTRY, nullptr);
-    jvmti->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_EXIT, nullptr);
+    // We do NOT enable METHOD_ENTRY or METHOD_EXIT events anymore!
 
     LOG_INFO("Successfully loaded and registered callbacks.");
     return JNI_OK;
