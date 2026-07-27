@@ -5,7 +5,11 @@
 #include <chrono>
 
 void ThreadManager::on_thread_start(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
-    
+
+    if (get_state(jvmti, thread) != nullptr) {
+        return;
+    }
+
     ThreadState* state = new ThreadState();
     state->id = next_id.fetch_add(1);
 
