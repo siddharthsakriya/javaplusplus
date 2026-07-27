@@ -62,7 +62,7 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
   - **Note:** `GetCurrentThreadCpuTime` was the *right* call for Section 4's design, since `MethodEntry`/`MethodExit` callbacks run on the thread that triggered them — "current thread" was the target thread. It does **not** work from the sampler thread, which observes *other* threads: that needs `GetThreadCpuTime(thread, ...)` plus the `can_get_thread_cpu_time` capability (different from `can_get_current_thread_cpu_time`). `Clock.hpp` was removed as dead code once Section 4 was ripped out; a per-thread CPU-time baseline is being rebuilt directly in `ThreadState`/`Sampler` as part of Section 7.
 - [x] **Section 6 — First output: text + JSON dump**
   - Aggregate method statistics (`MethodStats`: count, total, self, min, max).
-  - Dump top methods and per-thread summaries on `VMDeath`.
+  - Dump top methods and per-thread summaries on `VMDeath`. (maybe think about adding isDaemon as a field)
   - Implement basic JSON export.
 
 ### Statistical Profiling
