@@ -31,6 +31,8 @@ void Reporter::dump_report(jvmtiEnv* jvmti) {
         oss << "    Calls: " << stats.call_count << "\n";
         oss << "    Total: " << (stats.total_time_ns / 1000000.0) << " ms\n";
         oss << "    Self:  " << (stats.self_time_ns / 1000000.0) << " ms";
+        oss << "    Max Self Time: " << (stats.max_self_time_ns / 1000000.0) << " ms";
+        oss << "    Min Self Time: " << (stats.min_self_time_ns / 1000000.0) << " ms";
                            
         LOG_INFO(oss.str());
     }
