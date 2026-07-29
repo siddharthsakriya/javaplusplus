@@ -1,0 +1,220 @@
+{
+  "methods": [
+    {
+      "class": "LSample3$$Lambda.0x00000f0001040660;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 16,
+      "total_time_ns": 184540000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "nestedGamma1",
+      "signature": "()V",
+      "call_count": 16,
+      "total_time_ns": 184540000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/Thread;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 60,
+      "total_time_ns": 703720000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference;",
+      "method": "processPendingReferences",
+      "signature": "()V",
+      "call_count": 25,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "nestedBeta",
+      "signature": "()V",
+      "call_count": 20,
+      "total_time_ns": 234612000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "workerGamma",
+      "signature": "()V",
+      "call_count": 16,
+      "total_time_ns": 184540000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/Thread;",
+      "method": "runWith",
+      "signature": "(Ljava/lang/Object;Ljava/lang/Runnable;)V",
+      "call_count": 60,
+      "total_time_ns": 703720000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "workerAlpha",
+      "signature": "()V",
+      "call_count": 24,
+      "total_time_ns": 284568000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "nestedGamma2",
+      "signature": "()V",
+      "call_count": 16,
+      "total_time_ns": 184540000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference$ReferenceHandler;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 25,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3$$Lambda.0x00000f0001040438;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 20,
+      "total_time_ns": 234612000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "workerBeta",
+      "signature": "()V",
+      "call_count": 20,
+      "total_time_ns": 234612000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3$$Lambda.0x00000f0001040210;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 24,
+      "total_time_ns": 284568000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample3;",
+      "method": "spin",
+      "signature": "(J)D",
+      "call_count": 60,
+      "total_time_ns": 703720000,
+      "self_time_ns": 703720000,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 12578000
+    },
+    {
+      "class": "Ljava/lang/ref/Reference;",
+      "method": "waitForReferencePendingList",
+      "signature": "()V",
+      "call_count": 25,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    }
+  ],
+  "threads": [
+    {
+      "id": 2,
+      "name": "JVM++ Sampler",
+      "start_time_ns": 1785350209351497000,
+      "end_time_ns": 1785350209661300000,
+      "time_alive_ns": 309803000,
+      "still_running": false
+    },
+    {
+      "id": 8,
+      "name": "DestroyJavaVM",
+      "start_time_ns": 1785350209655148000,
+      "end_time_ns": 1785350209655251000,
+      "time_alive_ns": 103000,
+      "still_running": false
+    },
+    {
+      "id": 5,
+      "name": "worker-alpha",
+      "start_time_ns": 1785350209354928000,
+      "end_time_ns": 1785350209654978000,
+      "time_alive_ns": 300050000,
+      "still_running": false
+    },
+    {
+      "id": 1,
+      "name": "main",
+      "start_time_ns": 1785350209351455000,
+      "end_time_ns": 1785350209655064000,
+      "time_alive_ns": 303609000,
+      "still_running": false
+    },
+    {
+      "id": 6,
+      "name": "worker-beta",
+      "start_time_ns": 1785350209354947000,
+      "end_time_ns": 1785350209604990000,
+      "time_alive_ns": 250043000,
+      "still_running": false
+    },
+    {
+      "id": 7,
+      "name": "worker-gamma",
+      "start_time_ns": 1785350209354962000,
+      "end_time_ns": 1785350209555041000,
+      "time_alive_ns": 200079000,
+      "still_running": false
+    },
+    {
+      "id": 3,
+      "name": "Notification Thread",
+      "start_time_ns": 1785350209351515000,
+      "end_time_ns": null,
+      "time_alive_ns": 310254000,
+      "still_running": true
+    },
+    {
+      "id": 4,
+      "name": "Common-Cleaner",
+      "start_time_ns": 1785350209352158000,
+      "end_time_ns": null,
+      "time_alive_ns": 309611000,
+      "still_running": true
+    }
+  ]
+}

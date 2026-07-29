@@ -1,0 +1,4 @@
+java.lang.Thread::run;java.lang.Thread::runWith;Sample3$$Lambda.0x00000f0001040660::run;Sample3::workerGamma;Sample3::nestedGamma1;Sample3::nestedGamma2;Sample3::spin 16
+java.lang.Thread::run;java.lang.Thread::runWith;Sample3$$Lambda.0x00000f0001040438::run;Sample3::workerBeta;Sample3::nestedBeta;Sample3::spin 20
+java.lang.Thread::run;java.lang.Thread::runWith;Sample3$$Lambda.0x00000f0001040210::run;Sample3::workerAlpha;Sample3::spin 24
+java.lang.ref.Reference$ReferenceHandler::run;java.lang.ref.Reference::processPendingReferences;java.lang.ref.Reference::waitForReferencePendingList 25

@@ -1,0 +1,5 @@
+Sample2::main;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib 1
+Sample2::main;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib 3
+Sample2::main;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib 12
+Sample2::main;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib;Sample2::fib 8
+java.lang.ref.Reference$ReferenceHandler::run;java.lang.ref.Reference::processPendingReferences;java.lang.ref.Reference::waitForReferencePendingList 25

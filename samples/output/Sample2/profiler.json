@@ -1,0 +1,96 @@
+{
+  "methods": [
+    {
+      "class": "LSample2;",
+      "method": "main",
+      "signature": "([Ljava/lang/String;)V",
+      "call_count": 24,
+      "total_time_ns": 287815000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample2;",
+      "method": "fib",
+      "signature": "(I)J",
+      "call_count": 484,
+      "total_time_ns": 5806420000,
+      "self_time_ns": 287815000,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 12545000
+    },
+    {
+      "class": "Ljava/lang/ref/Reference$ReferenceHandler;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 25,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference;",
+      "method": "processPendingReferences",
+      "signature": "()V",
+      "call_count": 25,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference;",
+      "method": "waitForReferencePendingList",
+      "signature": "()V",
+      "call_count": 25,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    }
+  ],
+  "threads": [
+    {
+      "id": 2,
+      "name": "JVM++ Sampler",
+      "start_time_ns": 1785350209001571000,
+      "end_time_ns": 1785350209314513000,
+      "time_alive_ns": 312942000,
+      "still_running": false
+    },
+    {
+      "id": 5,
+      "name": "DestroyJavaVM",
+      "start_time_ns": 1785350209305472000,
+      "end_time_ns": 1785350209305538000,
+      "time_alive_ns": 66000,
+      "still_running": false
+    },
+    {
+      "id": 1,
+      "name": "main",
+      "start_time_ns": 1785350209001529000,
+      "end_time_ns": 1785350209305394000,
+      "time_alive_ns": 303865000,
+      "still_running": false
+    },
+    {
+      "id": 3,
+      "name": "Notification Thread",
+      "start_time_ns": 1785350209001590000,
+      "end_time_ns": null,
+      "time_alive_ns": 313331000,
+      "still_running": true
+    },
+    {
+      "id": 4,
+      "name": "Common-Cleaner",
+      "start_time_ns": 1785350209002234000,
+      "end_time_ns": null,
+      "time_alive_ns": 312687000,
+      "still_running": true
+    }
+  ]
+}
