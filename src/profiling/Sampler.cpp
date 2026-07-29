@@ -2,6 +2,9 @@
 #include "Logger.hpp"
 #include "JvmtiHelper.hpp"
 #include "MethodStats.hpp"
+#include "CallTree.hpp"
+#include "ThreadManager.hpp"
+#include "ThreadState.hpp"
 #include <chrono>
 
 void Sampler::start(jvmtiEnv* jvmti_env, JNIEnv* jni) {
@@ -50,9 +53,30 @@ void Sampler::sampler_loop() {
                     jvmtiFrameInfo frames[64];
                     jint frame_count = 0;
                     jvmtiError trace_err = jvmti -> GetStackTrace(curr_thread, 0, 64, frames, &frame_count);
-                    
+
                     if (trace_err == JVMTI_ERROR_NONE && frame_count > 0) {
-                        MethodStatsRegistry::getInstance().add_stats(frames[0].method, 0, 0);
+                        jlong current_cpu_time = 0;
+                        jvmtiError cpu_err = jvmti->GetThreadCpuTime(curr_thread, &current_cpu_time);
+
+                        if (cpu_err == JVMTI_ERROR_NONE) {
+                            int64_t delta_ns = 0;
+
+                            ThreadManager::getInstance().with_state(jvmti, curr_thread, [&](ThreadState* state) {
+                                if (state->last_cpu_time_ns >= 0) {
+                                    delta_ns = current_cpu_time - state->last_cpu_time_ns;
+                                }
+                                state->last_cpu_time_ns = current_cpu_time;
+                            });
+
+                            for (jint frame_idx = 0; frame_idx < frame_count; ++frame_idx) {
+                                MethodStatsRegistry::getInstance().add_stats(
+                                    frames[frame_idx].method,
+                                    delta_ns,
+                                    frame_idx == 0 ? delta_ns : 0
+                                );
+                            }
+                            CallTreeRegistry::getInstance().record_stack(frames, frame_count, delta_ns);
+                        }
                     }
                 }
                 jni->DeleteLocalRef(threads[i]);

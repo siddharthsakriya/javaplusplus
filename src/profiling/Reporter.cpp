@@ -2,14 +2,30 @@
 #include "MethodStats.hpp"
 #include "SymbolCache.hpp"
 #include "ThreadManager.hpp"
+#include "CallTree.hpp"
 #include "Logger.hpp"
 #include <vector>
 #include <algorithm>
 #include <sstream>
 #include <iomanip>
 #include <fstream>
+#include <functional>
 
 namespace {
+    std::string normalize_class_name(const std::string& signature) {
+        if (signature.size() >= 2 && signature.front() == 'L' && signature.back() == ';') {
+            std::string name = signature.substr(1, signature.size() - 2);
+            std::replace(name.begin(), name.end(), '/', '.');
+            return name;
+        }
+        return signature;
+    }
+
+    std::string resolve_name(jvmtiEnv* jvmti, jmethodID method_id) {
+        const MethodInfo& info = SymbolCache::instance().get_or_resolve(jvmti, method_id);
+        return normalize_class_name(info.class_name) + "::" + info.method_name;
+    }
+
     std::string escape_json(const std::string& s) {
         std::string out;
         out.reserve(s.size());
@@ -149,4 +165,87 @@ void Reporter::dump_json(jvmtiEnv* jvmti, JNIEnv* jni, const std::string& path) 
     out.close();
 
     LOG_INFO("JSON report written to: " + path);
+}
+
+void Reporter::dump_call_tree(jvmtiEnv* jvmti) {
+    LOG_INFO("--- Call Tree ---");
+
+    const CallTreeNode& root = CallTreeRegistry::getInstance().root();
+
+    int64_t total_ns = 0;
+    for (const auto& [method_id, child] : root.children) {
+        total_ns += child->inclusive_time_ns;
+    }
+
+    if (total_ns == 0) {
+        LOG_INFO("(no samples recorded)");
+        LOG_INFO("=== End Of Call Tree ===");
+        return;
+    }
+
+    std::function<void(const CallTreeNode&, int)> visit = [&](const CallTreeNode& node, int depth) {
+        std::ostringstream oss;
+        oss << std::fixed << std::setprecision(1);
+        oss << std::string(depth * 2, ' ');
+        oss << resolve_name(jvmti, node.method_id);
+        oss << " (count=" << node.sample_count;
+        oss << ", inclusive=" << (100.0 * node.inclusive_time_ns / total_ns) << "%";
+        oss << ", exclusive=" << (100.0 * node.self_time_ns / total_ns) << "%)";
+        LOG_INFO(oss.str());
+
+        std::vector<const CallTreeNode*> children;
+        for (const auto& [method_id, child] : node.children) {
+            children.push_back(child.get());
+        }
+        std::sort(children.begin(), children.end(), [](const CallTreeNode* a, const CallTreeNode* b) {
+            return a->inclusive_time_ns > b->inclusive_time_ns;
+        });
+        for (const CallTreeNode* child : children) {
+            visit(*child, depth + 1);
+        }
+    };
+
+    std::vector<const CallTreeNode*> roots;
+    for (const auto& [method_id, child] : root.children) {
+        roots.push_back(child.get());
+    }
+    std::sort(roots.begin(), roots.end(), [](const CallTreeNode* a, const CallTreeNode* b) {
+        return a->inclusive_time_ns > b->inclusive_time_ns;
+    });
+    for (const CallTreeNode* r : roots) {
+        visit(*r, 0);
+    }
+
+    LOG_INFO("=== End Of Call Tree ===");
+}
+
+void Reporter::dump_folded_stacks(jvmtiEnv* jvmti, const std::string& path) {
+    std::ofstream out(path, std::ios::out | std::ios::trunc);
+    if (!out.is_open()) {
+        LOG_ERROR("Failed to open folded-stack output file: " + path);
+        return;
+    }
+
+    const CallTreeNode& root = CallTreeRegistry::getInstance().root();
+
+    std::function<void(const CallTreeNode&, const std::string&)> visit =
+        [&](const CallTreeNode& node, const std::string& prefix) {
+            std::string path_str = prefix.empty()
+                ? resolve_name(jvmti, node.method_id)
+                : prefix + ";" + resolve_name(jvmti, node.method_id);
+
+            if (node.self_count > 0) {
+                out << path_str << " " << node.self_count << "\n";
+            }
+            for (const auto& [method_id, child] : node.children) {
+                visit(*child, path_str);
+            }
+        };
+
+    for (const auto& [method_id, child] : root.children) {
+        visit(*child, "");
+    }
+
+    out.close();
+    LOG_INFO("Folded-stack report written to: " + path);
 }

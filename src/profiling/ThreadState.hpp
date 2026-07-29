@@ -7,6 +7,7 @@ struct ThreadState {
     int id;
     std::string name;
     int64_t start_time_ns;
+    int64_t last_cpu_time_ns = -1; // baseline for per-sample CPU-time deltas; -1 = not yet observed
 };
 
 struct ThreadSummary {
