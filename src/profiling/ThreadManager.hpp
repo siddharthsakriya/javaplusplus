@@ -6,6 +6,7 @@
 #include <mutex>
 #include <unordered_map>
 #include <vector>
+#include <functional>
 #include "ThreadState.hpp"
 
 class ThreadManager {
@@ -18,6 +19,7 @@ class ThreadManager {
         void on_thread_start(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread);
         void on_thread_end(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread);
         static ThreadState* get_state(jvmtiEnv* jvmti, jthread thread);
+        void with_state(jvmtiEnv* jvmti, jthread thread, const std::function<void(ThreadState*)>& fn);
 
         static std::vector<ThreadSummary> get_live_thread_summaries(jvmtiEnv* jvmti, JNIEnv* jni);
 
@@ -30,4 +32,5 @@ class ThreadManager {
         std::atomic<int> next_id;
         std::unordered_map<int, ThreadSummary> thread_summary_map;
         mutable std::mutex summary_mutex;
+        std::mutex tls_mutex;
 };

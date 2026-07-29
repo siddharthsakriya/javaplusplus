@@ -34,25 +34,37 @@ void ThreadManager::on_thread_start(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread
 }
 
 void ThreadManager::on_thread_end(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
+    std::lock_guard<std::mutex> tls_lock(tls_mutex);
+
     ThreadState* state = get_state(jvmti, thread);
-    
+
     if (state==nullptr) {
         return;
     }
 
-    std::lock_guard<std::mutex> lock(summary_mutex);
-    ThreadSummary& thread_summary = thread_summary_map[state->id];
-    thread_summary.id = state->id;
-    thread_summary.name = state->name;
-    thread_summary.start_time_ns = state->start_time_ns;
-    thread_summary.end_time_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
-        std::chrono::system_clock::now().time_since_epoch()
-    ).count();
-    thread_summary.time_alive_ns = thread_summary.end_time_ns - thread_summary.start_time_ns;
+    {
+        std::lock_guard<std::mutex> lock(summary_mutex);
+        ThreadSummary& thread_summary = thread_summary_map[state->id];
+        thread_summary.id = state->id;
+        thread_summary.name = state->name;
+        thread_summary.start_time_ns = state->start_time_ns;
+        thread_summary.end_time_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            std::chrono::system_clock::now().time_since_epoch()
+        ).count();
+        thread_summary.time_alive_ns = thread_summary.end_time_ns - thread_summary.start_time_ns;
+    }
 
     LOG_INFO("Thread ended: ID=" + std::to_string(state->id) + ", Name=" + state->name);
     delete state;
     jvmti->SetThreadLocalStorage(thread, nullptr);
+}
+
+void ThreadManager::with_state(jvmtiEnv* jvmti, jthread thread, const std::function<void(ThreadState*)>& fn) {
+    std::lock_guard<std::mutex> tls_lock(tls_mutex);
+    ThreadState* state = get_state(jvmti, thread);
+    if (state != nullptr) {
+        fn(state);
+    }
 }
 
 ThreadState* ThreadManager::get_state(jvmtiEnv* jvmti, jthread thread) {

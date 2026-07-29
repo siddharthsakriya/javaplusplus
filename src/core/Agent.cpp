@@ -12,6 +12,7 @@
 #include "profiling/Sampler.hpp"
 
 static std::string g_json_path;
+static std::string g_flame_path;
 
 static void JNICALL cbVMInit(jvmtiEnv* jvmti, JNIEnv* jni, jthread thread) {
     LOG_INFO("VM initialized.");
@@ -28,9 +29,14 @@ static void JNICALL cbVMDeath(jvmtiEnv* jvmti, JNIEnv* jni) {
     Sampler::getInstance().stop();
     Reporter::dump_report(jvmti);
     Reporter::dump_thread_summaries(jvmti, jni);
+    Reporter::dump_call_tree(jvmti);
 
     if (!g_json_path.empty()) {
         Reporter::dump_json(jvmti, jni, g_json_path);
+    }
+
+    if (!g_flame_path.empty()) {
+        Reporter::dump_folded_stacks(jvmti, g_flame_path);
     }
 }
 
@@ -66,6 +72,16 @@ void parse_options(const char* options) {
         g_json_path = opts.substr(start, end - start);
         LOG_INFO("JSON report will be written to: " + g_json_path);
     }
+
+    std::string flame_key = "flamepath=";
+    pos = opts.find(flame_key);
+    if (pos != std::string::npos) {
+        size_t start = pos + flame_key.length();
+        size_t end = opts.find(',', start);
+        if (end == std::string::npos) end = opts.length();
+        g_flame_path = opts.substr(start, end - start);
+        LOG_INFO("Folded-stack report will be written to: " + g_flame_path);
+    }
 }
 
 extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* reserved) {
@@ -78,6 +94,12 @@ extern "C" JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM* vm, char* options, void* 
         LOG_ERROR("Failed to get JVMTI environment.");
         return JNI_ERR;
     }
+
+    jvmtiCapabilities capabilities;
+    memset(&capabilities, 0, sizeof(capabilities));
+    capabilities.can_get_thread_cpu_time = 1;
+    jvmtiError cap_err = jvmti->AddCapabilities(&capabilities);
+    CHECK_JVMTI(jvmti, cap_err, "AddCapabilities(can_get_thread_cpu_time)");
 
     jvmtiEventCallbacks callbacks;
     memset(&callbacks, 0, sizeof(callbacks));

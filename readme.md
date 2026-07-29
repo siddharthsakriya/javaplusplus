@@ -20,12 +20,14 @@ cmake --build .
 # Compile your test Java code
 javac test/Main.java
 
-# Run with the agent attached (macOS/Linux)
-java -agentpath:./build/libprofiler.so=logpath=/tmp/profiler.log -cp test Main
-
-# (On macOS, the file might be profiler.dylib depending on CMake config)
-java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
+# Run with the agent attached (macOS/Linux); build output is javaplusplus.dylib/.so
+java -agentpath:./build/javaplusplus.dylib=logpath=/tmp/profiler.log,jsonpath=/tmp/profiler.json,flamepath=/tmp/profiler.folded -cp test Main
 ```
+
+Agent options (comma-separated `key=value`, all optional):
+- `logpath=` — file the `Logger` appends to, in addition to stderr.
+- `jsonpath=` — where `Reporter::dump_json` writes method stats + thread summaries on `VMDeath`.
+- `flamepath=` — where `Reporter::dump_folded_stacks` writes a collapsed-stack file (`Class::method;Class::method;... count` per line) directly consumable by `flamegraph.pl` / speedscope.
 
 ---
 
@@ -66,14 +68,17 @@ java -agentpath:./build/profiler.dylib=logpath=/tmp/profiler.log -cp test Main
   - Implement basic JSON export.
 
 ### Statistical Profiling
-- [ ] **Section 7 — CPU sampling thread**
-  - Native background thread for statistical sampling — done, using `GetAllThreads` + `GetThreadState` + `GetStackTrace` on runnable threads directly, without `SuspendThread`/`ResumeThread`: JVMTI permits `GetStackTrace` on a live thread, so explicit suspension was dropped to avoid the extra overhead/complexity.
-  - Aggregate method frequency to find hot methods — done (`frames[0]` per sample).
-  - **Pulled forward from Section 10:** attribute real per-sample time via `GetThreadCpuTime` deltas against a per-thread baseline, walking the *full* captured stack — inclusive time to every frame, exclusive time to the top frame only. In progress.
-- [ ] **Section 8 — Call tree + flame graph output**
-  - Build a Trie structure keyed on `methodId` sequences.
-  - Output indented call trees (count, inclusive %, exclusive %).
-  - Output folded stacks for `flamegraph.pl`.
+- [x] **Section 7 — CPU sampling thread**
+  - Native background thread for statistical sampling — using `GetAllThreads` + `GetThreadState` + `GetStackTrace` on runnable threads directly, without `SuspendThread`/`ResumeThread`: JVMTI permits `GetStackTrace` on a live thread, so explicit suspension was dropped to avoid the extra overhead/complexity.
+  - Aggregate method frequency to find hot methods (`frames[0]` per sample, plus every other frame on the stack — see below).
+  - **Pulled forward from Section 10:** real per-sample time attribution via `GetThreadCpuTime` deltas against a per-thread baseline, walking the *full* captured stack — inclusive time to every frame, exclusive time to the top frame only.
+  - Requires the `can_get_thread_cpu_time` capability, requested via `AddCapabilities` in `Agent_OnLoad` (the agent previously requested zero capabilities).
+  - The per-thread CPU-time baseline lives in `ThreadState::last_cpu_time_ns`, updated by the sampler each sample. Since this is the first time the sampler thread reads/writes a `ThreadState` owned by another (possibly-dying) thread, `ThreadManager` gained a mutex guarding `SetThreadLocalStorage`/`delete` in `on_thread_end` against concurrent access, exposed via `ThreadManager::with_state(jvmti, thread, fn)` for safe cross-thread reads. Plain `ThreadManager::get_state` remains for call sites that only ever run on the owning thread or after the sampler has stopped.
+- [x] **Section 8 — Call tree + flame graph output**
+  - `CallTreeRegistry` (`src/profiling/CallTree.hpp`) — a Trie keyed on `jmethodID` sequences, built by `Sampler` alongside `MethodStatsRegistry` on every sample. Each node tracks `inclusive_time_ns`/`sample_count` (accrued at every node on the sampled stack) and `self_time_ns`/`self_count` (accrued only at the top-of-stack node).
+  - `Reporter::dump_call_tree` — indented text call tree (count, inclusive %, exclusive %) logged alongside the existing top-20 methods list.
+  - `Reporter::dump_folded_stacks` — writes a collapsed-stack file, one line per unique full stack (`Class::method;Class::method;... count`), directly consumable by `flamegraph.pl`/speedscope. Wired to the new `flamepath=` agent option.
+  - `SymbolCache`'s `class_name` is the raw JVMTI class signature (e.g. `LMain;`), which itself contains a `;` — colliding with the `;` frame separator in the folded-stack format. `Reporter`'s internal `resolve_name`/`normalize_class_name` strip the `L`/`;` wrapper and convert `/` to `.` (`LMain;` → `Main`, `Ljava/lang/String;` → `java.lang.String`) before formatting any call-tree/folded-stack output. This only affects the new dump functions — `dump_report`/`dump_json` still show the raw signature.
 
 ### Memory & Advanced Profiling
 - [ ] **Section 9 — Allocation profiling**

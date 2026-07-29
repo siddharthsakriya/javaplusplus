@@ -11,10 +11,33 @@ public class Main {
     }
 
     static void methodA() {
-        for (int i = 0; i < 1000; i++) { Math.sqrt(i); }
+        nestedA1();
+    }
+
+    static void nestedA1() {
+        nestedA2();
+    }
+
+    static void nestedA2() {
+        busyLoop(200);
     }
 
     static void methodB() {
-        for (int i = 0; i < 1000; i++) { Math.sqrt(i); }
+        nestedB1();
+    }
+
+    static void nestedB1() {
+        busyLoop(200);
+    }
+
+    static double busyLoop(long durationMs) {
+        long end = System.nanoTime() + durationMs * 1_000_000L;
+        double acc = 0;
+        while (System.nanoTime() < end) {
+            for (int i = 0; i < 1000; i++) {
+                acc += Math.sqrt(i);
+            }
+        }
+        return acc;
     }
 }
