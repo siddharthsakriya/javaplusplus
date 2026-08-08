@@ -1,0 +1,342 @@
+[19:36:21] [INFO] Logger initialized to file: samples/output/Sample3/report.txt
+[19:36:21] [INFO] JSON report will be written to: samples/output/Sample3/profiler.json
+[19:36:21] [INFO] Folded-stack report will be written to: samples/output/Sample3/profiler.folded
+[19:36:21] [INFO] Successfully loaded and registered callbacks.
+[19:36:21] [INFO] VM initialized.
+[19:36:21] [INFO] Thread started: ID=1, Name=main
+[19:36:21] [INFO] Thread started: ID=2, Name=JVM++ Sampler
+[19:36:21] [INFO] Thread started: ID=3, Name=Notification Thread
+[19:36:21] [INFO] Thread started: ID=4, Name=Common-Cleaner
+[19:36:21] [INFO] Thread started: ID=5, Name=worker-alpha
+[19:36:21] [INFO] Thread started: ID=6, Name=worker-beta
+[19:36:21] [INFO] Thread started: ID=7, Name=worker-gamma
+[19:36:21] [INFO] Thread ended: ID=7, Name=worker-gamma
+[19:36:21] [INFO] Thread ended: ID=6, Name=worker-beta
+[19:36:21] [INFO] Thread ended: ID=5, Name=worker-alpha
+[19:36:21] [INFO] Thread ended: ID=1, Name=main
+[19:36:21] [INFO] Thread started: ID=8, Name=DestroyJavaVM
+[19:36:21] [INFO] Thread ended: ID=8, Name=DestroyJavaVM
+[19:36:21] [INFO] VM shutting down.
+[19:36:21] [INFO] Thread ended: ID=2, Name=JVM++ Sampler
+[19:36:21] [INFO] === Profiling Report ===
+[19:36:21] [INFO] --- Top 20 Methods by Total Time ---
+[19:36:21] [INFO] Ljava/lang/Thread; :: run
+    Calls: 60
+    Total: 705.137 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/Thread; :: runWith
+    Calls: 60
+    Total: 705.137 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: spin
+    Calls: 60
+    Total: 705.137 ms
+    Self:  705.137 ms
+    Max Self Time: 12.565 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3$$Lambda.0x0000080001040210; :: run
+    Calls: 24
+    Total: 283.101 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: workerAlpha
+    Calls: 24
+    Total: 283.101 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: workerBeta
+    Calls: 20
+    Total: 235.082 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3$$Lambda.0x0000080001040438; :: run
+    Calls: 20
+    Total: 235.082 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: nestedBeta
+    Calls: 20
+    Total: 235.082 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: nestedGamma1
+    Calls: 16
+    Total: 186.954 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3$$Lambda.0x0000080001040660; :: run
+    Calls: 16
+    Total: 186.954 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: nestedGamma2
+    Calls: 16
+    Total: 186.954 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample3; :: workerGamma
+    Calls: 16
+    Total: 186.954 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference$ReferenceHandler; :: run
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference; :: waitForReferencePendingList
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference; :: processPendingReferences
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/String; :: equals
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/System; :: getProperty
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: run
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/util/Properties; :: getProperty
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: getConfigFile
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] === End Of Report===
+[19:36:21] [INFO] --- Thread Summaries ---
+[19:36:21] [INFO] Thread ID=2, Name=JVM++ Sampler
+    Alive: 308.260 ms (ended)
+[19:36:21] [INFO] Thread ID=8, Name=DestroyJavaVM
+    Alive: 0.071 ms (ended)
+[19:36:21] [INFO] Thread ID=5, Name=worker-alpha
+    Alive: 300.052 ms (ended)
+[19:36:21] [INFO] Thread ID=1, Name=main
+    Alive: 303.678 ms (ended)
+[19:36:21] [INFO] Thread ID=6, Name=worker-beta
+    Alive: 250.043 ms (ended)
+[19:36:21] [INFO] Thread ID=7, Name=worker-gamma
+    Alive: 200.069 ms (ended)
+[19:36:21] [INFO] Thread ID=3, Name=Notification Thread
+    Alive: 308.483 ms (still running)
+[19:36:21] [INFO] Thread ID=4, Name=Common-Cleaner
+    Alive: 307.893 ms (still running)
+[19:36:21] [INFO] === End Of Thread Summaries ===
+[19:36:21] [INFO] --- Call Tree ---
+[19:36:21] [INFO] java.lang.Thread::run (count=60, inclusive=100.0%, exclusive=0.0%)
+[19:36:21] [INFO]   java.lang.Thread::runWith (count=60, inclusive=100.0%, exclusive=0.0%)
+[19:36:21] [INFO]     Sample3$$Lambda.0x0000080001040210::run (count=24, inclusive=40.1%, exclusive=0.0%)
+[19:36:21] [INFO]       Sample3::workerAlpha (count=24, inclusive=40.1%, exclusive=0.0%)
+[19:36:21] [INFO]         Sample3::spin (count=24, inclusive=40.1%, exclusive=40.1%)
+[19:36:21] [INFO]     Sample3$$Lambda.0x0000080001040438::run (count=20, inclusive=33.3%, exclusive=0.0%)
+[19:36:21] [INFO]       Sample3::workerBeta (count=20, inclusive=33.3%, exclusive=0.0%)
+[19:36:21] [INFO]         Sample3::nestedBeta (count=20, inclusive=33.3%, exclusive=0.0%)
+[19:36:21] [INFO]           Sample3::spin (count=20, inclusive=33.3%, exclusive=33.3%)
+[19:36:21] [INFO]     Sample3$$Lambda.0x0000080001040660::run (count=16, inclusive=26.5%, exclusive=0.0%)
+[19:36:21] [INFO]       Sample3::workerGamma (count=16, inclusive=26.5%, exclusive=0.0%)
+[19:36:21] [INFO]         Sample3::nestedGamma1 (count=16, inclusive=26.5%, exclusive=0.0%)
+[19:36:21] [INFO]           Sample3::nestedGamma2 (count=16, inclusive=26.5%, exclusive=0.0%)
+[19:36:21] [INFO]             Sample3::spin (count=16, inclusive=26.5%, exclusive=26.5%)
+[19:36:21] [INFO] java.lang.ref.Reference$ReferenceHandler::run (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]   java.lang.ref.Reference::processPendingReferences (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]     java.lang.ref.Reference::waitForReferencePendingList (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO] jdk.internal.vm.PostVMInitHook::run (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]   jdk.internal.vm.PostVMInitHook::trackJavaUsage (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]     jdk.internal.vm.PostVMInitHook::getConfigFile (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]       java.lang.System::getProperty (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]         java.util.Properties::getProperty (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]           java.util.concurrent.ConcurrentHashMap::get (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]             java.lang.String::equals (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]               java.lang.StringLatin1::equals (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO] === End Of Call Tree ===
+[19:36:21] [INFO] JSON report written to: samples/output/Sample3/profiler.json
+[19:36:21] [INFO] Folded-stack report written to: samples/output/Sample3/profiler.folded
+[19:36:49] [INFO] Logger initialized to file: samples/output/Sample3/report.txt
+[19:36:49] [INFO] JSON report will be written to: samples/output/Sample3/profiler.json
+[19:36:49] [INFO] Folded-stack report will be written to: samples/output/Sample3/profiler.folded
+[19:36:49] [INFO] Successfully loaded and registered callbacks.
+[19:36:49] [INFO] VM initialized.
+[19:36:49] [INFO] Thread started: ID=1, Name=main
+[19:36:49] [INFO] Thread started: ID=2, Name=JVM++ Sampler
+[19:36:49] [INFO] Thread started: ID=3, Name=Notification Thread
+[19:36:49] [INFO] Thread started: ID=4, Name=Common-Cleaner
+[19:36:49] [INFO] Thread started: ID=5, Name=worker-alpha
+[19:36:49] [INFO] Thread started: ID=6, Name=worker-beta
+[19:36:49] [INFO] Thread started: ID=7, Name=worker-gamma
+[19:36:49] [INFO] Thread ended: ID=7, Name=worker-gamma
+[19:36:49] [INFO] Thread ended: ID=6, Name=worker-beta
+[19:36:49] [INFO] Thread ended: ID=5, Name=worker-alpha
+[19:36:49] [INFO] Thread ended: ID=1, Name=main
+[19:36:49] [INFO] Thread started: ID=8, Name=DestroyJavaVM
+[19:36:49] [INFO] Thread ended: ID=8, Name=DestroyJavaVM
+[19:36:49] [INFO] VM shutting down.
+[19:36:49] [INFO] Thread ended: ID=2, Name=JVM++ Sampler
+[19:36:49] [INFO] === Profiling Report ===
+[19:36:49] [INFO] --- Top 20 Methods by Total Time ---
+[19:36:49] [INFO] Ljava/lang/Thread; :: run
+    Calls: 60
+    Total: 703.720 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/Thread; :: runWith
+    Calls: 60
+    Total: 703.720 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: spin
+    Calls: 60
+    Total: 703.720 ms
+    Self:  703.720 ms
+    Max Self Time: 12.578 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: workerAlpha
+    Calls: 24
+    Total: 284.568 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3$$Lambda.0x00000f0001040210; :: run
+    Calls: 24
+    Total: 284.568 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: nestedBeta
+    Calls: 20
+    Total: 234.612 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3$$Lambda.0x00000f0001040438; :: run
+    Calls: 20
+    Total: 234.612 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: workerBeta
+    Calls: 20
+    Total: 234.612 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3$$Lambda.0x00000f0001040660; :: run
+    Calls: 16
+    Total: 184.540 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: nestedGamma1
+    Calls: 16
+    Total: 184.540 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: workerGamma
+    Calls: 16
+    Total: 184.540 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample3; :: nestedGamma2
+    Calls: 16
+    Total: 184.540 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/ref/Reference; :: processPendingReferences
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/ref/Reference$ReferenceHandler; :: run
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/ref/Reference; :: waitForReferencePendingList
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] === End Of Report===
+[19:36:49] [INFO] --- Thread Summaries ---
+[19:36:49] [INFO] Thread ID=2, Name=JVM++ Sampler
+    Alive: 309.803 ms (ended)
+[19:36:49] [INFO] Thread ID=8, Name=DestroyJavaVM
+    Alive: 0.103 ms (ended)
+[19:36:49] [INFO] Thread ID=5, Name=worker-alpha
+    Alive: 300.050 ms (ended)
+[19:36:49] [INFO] Thread ID=1, Name=main
+    Alive: 303.609 ms (ended)
+[19:36:49] [INFO] Thread ID=6, Name=worker-beta
+    Alive: 250.043 ms (ended)
+[19:36:49] [INFO] Thread ID=7, Name=worker-gamma
+    Alive: 200.079 ms (ended)
+[19:36:49] [INFO] Thread ID=3, Name=Notification Thread
+    Alive: 310.029 ms (still running)
+[19:36:49] [INFO] Thread ID=4, Name=Common-Cleaner
+    Alive: 309.386 ms (still running)
+[19:36:49] [INFO] === End Of Thread Summaries ===
+[19:36:49] [INFO] --- Call Tree ---
+[19:36:49] [INFO] java.lang.Thread::run (count=60, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]   java.lang.Thread::runWith (count=60, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]     Sample3$$Lambda.0x00000f0001040210::run (count=24, inclusive=40.4%, exclusive=0.0%)
+[19:36:49] [INFO]       Sample3::workerAlpha (count=24, inclusive=40.4%, exclusive=0.0%)
+[19:36:49] [INFO]         Sample3::spin (count=24, inclusive=40.4%, exclusive=40.4%)
+[19:36:49] [INFO]     Sample3$$Lambda.0x00000f0001040438::run (count=20, inclusive=33.3%, exclusive=0.0%)
+[19:36:49] [INFO]       Sample3::workerBeta (count=20, inclusive=33.3%, exclusive=0.0%)
+[19:36:49] [INFO]         Sample3::nestedBeta (count=20, inclusive=33.3%, exclusive=0.0%)
+[19:36:49] [INFO]           Sample3::spin (count=20, inclusive=33.3%, exclusive=33.3%)
+[19:36:49] [INFO]     Sample3$$Lambda.0x00000f0001040660::run (count=16, inclusive=26.2%, exclusive=0.0%)
+[19:36:49] [INFO]       Sample3::workerGamma (count=16, inclusive=26.2%, exclusive=0.0%)
+[19:36:49] [INFO]         Sample3::nestedGamma1 (count=16, inclusive=26.2%, exclusive=0.0%)
+[19:36:49] [INFO]           Sample3::nestedGamma2 (count=16, inclusive=26.2%, exclusive=0.0%)
+[19:36:49] [INFO]             Sample3::spin (count=16, inclusive=26.2%, exclusive=26.2%)
+[19:36:49] [INFO] java.lang.ref.Reference$ReferenceHandler::run (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:49] [INFO]   java.lang.ref.Reference::processPendingReferences (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:49] [INFO]     java.lang.ref.Reference::waitForReferencePendingList (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:49] [INFO] === End Of Call Tree ===
+[19:36:49] [INFO] JSON report written to: samples/output/Sample3/profiler.json
+[19:36:49] [INFO] Folded-stack report written to: samples/output/Sample3/profiler.folded

@@ -1,0 +1,336 @@
+[19:36:21] [INFO] Logger initialized to file: samples/output/Sample1/report.txt
+[19:36:21] [INFO] JSON report will be written to: samples/output/Sample1/profiler.json
+[19:36:21] [INFO] Folded-stack report will be written to: samples/output/Sample1/profiler.folded
+[19:36:21] [INFO] Successfully loaded and registered callbacks.
+[19:36:21] [INFO] VM initialized.
+[19:36:21] [INFO] Thread started: ID=1, Name=main
+[19:36:21] [INFO] Thread started: ID=2, Name=JVM++ Sampler
+[19:36:21] [INFO] Thread started: ID=3, Name=Notification Thread
+[19:36:21] [INFO] Thread started: ID=4, Name=Common-Cleaner
+[19:36:21] [INFO] Thread ended: ID=1, Name=main
+[19:36:21] [INFO] Thread started: ID=5, Name=DestroyJavaVM
+[19:36:21] [INFO] Thread ended: ID=5, Name=DestroyJavaVM
+[19:36:21] [INFO] VM shutting down.
+[19:36:21] [INFO] Thread ended: ID=2, Name=JVM++ Sampler
+[19:36:21] [INFO] === Profiling Report ===
+[19:36:21] [INFO] --- Top 20 Methods by Total Time ---
+[19:36:21] [INFO] LSample1; :: spin
+    Calls: 36
+    Total: 447.347 ms
+    Self:  447.347 ms
+    Max Self Time: 12.586 ms
+    Min Self Time: 10.866 ms
+[19:36:21] [INFO] LSample1; :: main
+    Calls: 36
+    Total: 447.347 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample1; :: pipelineStageB
+    Calls: 12
+    Total: 150.274 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample1; :: transform
+    Calls: 12
+    Total: 150.274 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample1; :: normalize
+    Calls: 12
+    Total: 150.274 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample1; :: pipelineStageC
+    Calls: 12
+    Total: 149.571 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample1; :: pipelineStageA
+    Calls: 12
+    Total: 147.502 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] LSample1; :: validate
+    Calls: 12
+    Total: 147.502 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference$ReferenceHandler; :: run
+    Calls: 37
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference; :: processPendingReferences
+    Calls: 37
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/AbstractStringBuilder; :: append
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: run
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/AbstractStringBuilder; :: ensureCapacityNewCoder
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: getConfigFile
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/StringBuilder; :: append
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/util/Arrays; :: copyOf
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/Math; :: min
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference; :: waitForReferencePendingList
+    Calls: 37
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: trackJavaUsage
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] === End Of Report===
+[19:36:21] [INFO] --- Thread Summaries ---
+[19:36:21] [INFO] Thread ID=2, Name=JVM++ Sampler
+    Alive: 460.101 ms (ended)
+[19:36:21] [INFO] Thread ID=5, Name=DestroyJavaVM
+    Alive: 0.082 ms (ended)
+[19:36:21] [INFO] Thread ID=1, Name=main
+    Alive: 451.500 ms (ended)
+[19:36:21] [INFO] Thread ID=3, Name=Notification Thread
+    Alive: 460.353 ms (still running)
+[19:36:21] [INFO] Thread ID=4, Name=Common-Cleaner
+    Alive: 459.608 ms (still running)
+[19:36:21] [INFO] === End Of Thread Summaries ===
+[19:36:21] [INFO] --- Call Tree ---
+[19:36:21] [INFO] Sample1::main (count=36, inclusive=100.0%, exclusive=0.0%)
+[19:36:21] [INFO]   Sample1::pipelineStageB (count=12, inclusive=33.6%, exclusive=0.0%)
+[19:36:21] [INFO]     Sample1::transform (count=12, inclusive=33.6%, exclusive=0.0%)
+[19:36:21] [INFO]       Sample1::normalize (count=12, inclusive=33.6%, exclusive=0.0%)
+[19:36:21] [INFO]         Sample1::spin (count=12, inclusive=33.6%, exclusive=33.6%)
+[19:36:21] [INFO]   Sample1::pipelineStageC (count=12, inclusive=33.4%, exclusive=0.0%)
+[19:36:21] [INFO]     Sample1::spin (count=12, inclusive=33.4%, exclusive=33.4%)
+[19:36:21] [INFO]   Sample1::pipelineStageA (count=12, inclusive=33.0%, exclusive=0.0%)
+[19:36:21] [INFO]     Sample1::validate (count=12, inclusive=33.0%, exclusive=0.0%)
+[19:36:21] [INFO]       Sample1::spin (count=12, inclusive=33.0%, exclusive=33.0%)
+[19:36:21] [INFO] java.lang.ref.Reference$ReferenceHandler::run (count=37, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]   java.lang.ref.Reference::processPendingReferences (count=37, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]     java.lang.ref.Reference::waitForReferencePendingList (count=37, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO] jdk.internal.vm.PostVMInitHook::run (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]   jdk.internal.vm.PostVMInitHook::trackJavaUsage (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]     jdk.internal.vm.PostVMInitHook::getConfigFile (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]       java.lang.StringBuilder::append (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]         java.lang.AbstractStringBuilder::append (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]           java.lang.AbstractStringBuilder::ensureCapacityNewCoder (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]             java.util.Arrays::copyOf (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO]               java.lang.Math::min (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:21] [INFO] === End Of Call Tree ===
+[19:36:21] [INFO] JSON report written to: samples/output/Sample1/profiler.json
+[19:36:21] [INFO] Folded-stack report written to: samples/output/Sample1/profiler.folded
+[19:36:48] [INFO] Logger initialized to file: samples/output/Sample1/report.txt
+[19:36:48] [INFO] JSON report will be written to: samples/output/Sample1/profiler.json
+[19:36:48] [INFO] Folded-stack report will be written to: samples/output/Sample1/profiler.folded
+[19:36:48] [INFO] Successfully loaded and registered callbacks.
+[19:36:48] [INFO] VM initialized.
+[19:36:48] [INFO] Thread started: ID=1, Name=main
+[19:36:48] [INFO] Thread started: ID=2, Name=JVM++ Sampler
+[19:36:48] [INFO] Thread started: ID=3, Name=Notification Thread
+[19:36:48] [INFO] Thread started: ID=4, Name=Common-Cleaner
+[19:36:48] [INFO] Thread ended: ID=1, Name=main
+[19:36:48] [INFO] Thread started: ID=5, Name=DestroyJavaVM
+[19:36:48] [INFO] Thread ended: ID=5, Name=DestroyJavaVM
+[19:36:48] [INFO] VM shutting down.
+[19:36:48] [INFO] Thread ended: ID=2, Name=JVM++ Sampler
+[19:36:48] [INFO] === Profiling Report ===
+[19:36:48] [INFO] --- Top 20 Methods by Total Time ---
+[19:36:48] [INFO] LSample1; :: main
+    Calls: 36
+    Total: 444.147 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] LSample1; :: spin
+    Calls: 36
+    Total: 444.147 ms
+    Self:  444.147 ms
+    Max Self Time: 12.562 ms
+    Min Self Time: 10.133 ms
+[19:36:48] [INFO] LSample1; :: transform
+    Calls: 12
+    Total: 150.275 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] LSample1; :: normalize
+    Calls: 12
+    Total: 150.275 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] LSample1; :: pipelineStageB
+    Calls: 12
+    Total: 150.275 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] LSample1; :: pipelineStageC
+    Calls: 12
+    Total: 147.985 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] LSample1; :: validate
+    Calls: 12
+    Total: 145.887 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] LSample1; :: pipelineStageA
+    Calls: 12
+    Total: 145.887 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/lang/String; :: indexOf
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/lang/ref/Reference$ReferenceHandler; :: run
+    Calls: 37
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/lang/ref/Reference; :: waitForReferencePendingList
+    Calls: 37
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljdk/internal/vm/PostVMInitHook; :: run
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljdk/internal/vm/PostVMInitHook; :: trackJavaUsage
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljdk/internal/vm/PostVMInitHook; :: getConfigFile
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/io/UnixFileSystem; :: normalize
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/lang/StringLatin1; :: indexOf
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/io/File; :: <init>
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/lang/ref/Reference; :: processPendingReferences
+    Calls: 37
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] Ljava/lang/StringLatin1; :: indexOf
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:48] [INFO] === End Of Report===
+[19:36:48] [INFO] --- Thread Summaries ---
+[19:36:48] [INFO] Thread ID=2, Name=JVM++ Sampler
+    Alive: 456.772 ms (ended)
+[19:36:48] [INFO] Thread ID=5, Name=DestroyJavaVM
+    Alive: 0.091 ms (ended)
+[19:36:48] [INFO] Thread ID=1, Name=main
+    Alive: 451.111 ms (ended)
+[19:36:48] [INFO] Thread ID=3, Name=Notification Thread
+    Alive: 457.064 ms (still running)
+[19:36:48] [INFO] Thread ID=4, Name=Common-Cleaner
+    Alive: 456.464 ms (still running)
+[19:36:48] [INFO] === End Of Thread Summaries ===
+[19:36:48] [INFO] --- Call Tree ---
+[19:36:48] [INFO] Sample1::main (count=36, inclusive=100.0%, exclusive=0.0%)
+[19:36:48] [INFO]   Sample1::pipelineStageB (count=12, inclusive=33.8%, exclusive=0.0%)
+[19:36:48] [INFO]     Sample1::transform (count=12, inclusive=33.8%, exclusive=0.0%)
+[19:36:48] [INFO]       Sample1::normalize (count=12, inclusive=33.8%, exclusive=0.0%)
+[19:36:48] [INFO]         Sample1::spin (count=12, inclusive=33.8%, exclusive=33.8%)
+[19:36:48] [INFO]   Sample1::pipelineStageC (count=12, inclusive=33.3%, exclusive=0.0%)
+[19:36:48] [INFO]     Sample1::spin (count=12, inclusive=33.3%, exclusive=33.3%)
+[19:36:48] [INFO]   Sample1::pipelineStageA (count=12, inclusive=32.8%, exclusive=0.0%)
+[19:36:48] [INFO]     Sample1::validate (count=12, inclusive=32.8%, exclusive=0.0%)
+[19:36:48] [INFO]       Sample1::spin (count=12, inclusive=32.8%, exclusive=32.8%)
+[19:36:48] [INFO] java.lang.ref.Reference$ReferenceHandler::run (count=37, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]   java.lang.ref.Reference::processPendingReferences (count=37, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]     java.lang.ref.Reference::waitForReferencePendingList (count=37, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO] jdk.internal.vm.PostVMInitHook::run (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]   jdk.internal.vm.PostVMInitHook::trackJavaUsage (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]     jdk.internal.vm.PostVMInitHook::getConfigFile (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]       java.io.File::<init> (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]         java.io.UnixFileSystem::normalize (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]           java.lang.String::indexOf (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]             java.lang.StringLatin1::indexOf (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO]               java.lang.StringLatin1::indexOf (count=1, inclusive=0.0%, exclusive=0.0%)
+[19:36:48] [INFO] === End Of Call Tree ===
+[19:36:48] [INFO] JSON report written to: samples/output/Sample1/profiler.json
+[19:36:48] [INFO] Folded-stack report written to: samples/output/Sample1/profiler.folded

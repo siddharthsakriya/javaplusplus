@@ -1,0 +1,236 @@
+{
+  "methods": [
+    {
+      "class": "LSample1;",
+      "method": "pipelineStageC",
+      "signature": "()V",
+      "call_count": 12,
+      "total_time_ns": 147985000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "transform",
+      "signature": "()V",
+      "call_count": 12,
+      "total_time_ns": 150275000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "normalize",
+      "signature": "()V",
+      "call_count": 12,
+      "total_time_ns": 150275000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "validate",
+      "signature": "()V",
+      "call_count": 12,
+      "total_time_ns": 145887000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/String;",
+      "method": "indexOf",
+      "signature": "(Ljava/lang/String;)I",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference$ReferenceHandler;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 37,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference;",
+      "method": "waitForReferencePendingList",
+      "signature": "()V",
+      "call_count": 37,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljdk/internal/vm/PostVMInitHook;",
+      "method": "run",
+      "signature": "()V",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljdk/internal/vm/PostVMInitHook;",
+      "method": "trackJavaUsage",
+      "signature": "()V",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljdk/internal/vm/PostVMInitHook;",
+      "method": "getConfigFile",
+      "signature": "()Ljava/io/File;",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "pipelineStageB",
+      "signature": "()V",
+      "call_count": 12,
+      "total_time_ns": 150275000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "pipelineStageA",
+      "signature": "()V",
+      "call_count": 12,
+      "total_time_ns": 145887000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/io/UnixFileSystem;",
+      "method": "normalize",
+      "signature": "(Ljava/lang/String;)Ljava/lang/String;",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/StringLatin1;",
+      "method": "indexOf",
+      "signature": "([B[B)I",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "main",
+      "signature": "([Ljava/lang/String;)V",
+      "call_count": 36,
+      "total_time_ns": 444147000,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/io/File;",
+      "method": "<init>",
+      "signature": "(Ljava/lang/String;)V",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "Ljava/lang/ref/Reference;",
+      "method": "processPendingReferences",
+      "signature": "()V",
+      "call_count": 37,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    },
+    {
+      "class": "LSample1;",
+      "method": "spin",
+      "signature": "(J)D",
+      "call_count": 36,
+      "total_time_ns": 444147000,
+      "self_time_ns": 444147000,
+      "min_self_time_ns": 10133000,
+      "max_self_time_ns": 12562000
+    },
+    {
+      "class": "Ljava/lang/StringLatin1;",
+      "method": "indexOf",
+      "signature": "([BI[BII)I",
+      "call_count": 1,
+      "total_time_ns": 0,
+      "self_time_ns": 0,
+      "min_self_time_ns": 0,
+      "max_self_time_ns": 0
+    }
+  ],
+  "threads": [
+    {
+      "id": 2,
+      "name": "JVM++ Sampler",
+      "start_time_ns": 1785350208508919000,
+      "end_time_ns": 1785350208965691000,
+      "time_alive_ns": 456772000,
+      "still_running": false
+    },
+    {
+      "id": 5,
+      "name": "DestroyJavaVM",
+      "start_time_ns": 1785350208960069000,
+      "end_time_ns": 1785350208960160000,
+      "time_alive_ns": 91000,
+      "still_running": false
+    },
+    {
+      "id": 1,
+      "name": "main",
+      "start_time_ns": 1785350208508869000,
+      "end_time_ns": 1785350208959980000,
+      "time_alive_ns": 451111000,
+      "still_running": false
+    },
+    {
+      "id": 3,
+      "name": "Notification Thread",
+      "start_time_ns": 1785350208508933000,
+      "end_time_ns": null,
+      "time_alive_ns": 457312000,
+      "still_running": true
+    },
+    {
+      "id": 4,
+      "name": "Common-Cleaner",
+      "start_time_ns": 1785350208509533000,
+      "end_time_ns": null,
+      "time_alive_ns": 456712000,
+      "still_running": true
+    }
+  ]
+}

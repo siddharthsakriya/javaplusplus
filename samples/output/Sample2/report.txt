@@ -1,0 +1,183 @@
+[19:36:21] [INFO] Logger initialized to file: samples/output/Sample2/report.txt
+[19:36:21] [INFO] JSON report will be written to: samples/output/Sample2/profiler.json
+[19:36:21] [INFO] Folded-stack report will be written to: samples/output/Sample2/profiler.folded
+[19:36:21] [INFO] Successfully loaded and registered callbacks.
+[19:36:21] [INFO] VM initialized.
+[19:36:21] [INFO] Thread started: ID=1, Name=main
+[19:36:21] [INFO] Thread started: ID=2, Name=Notification Thread
+[19:36:21] [INFO] Thread started: ID=3, Name=JVM++ Sampler
+[19:36:21] [INFO] Thread started: ID=4, Name=Common-Cleaner
+[19:36:21] [INFO] Thread ended: ID=1, Name=main
+[19:36:21] [INFO] Thread started: ID=5, Name=DestroyJavaVM
+[19:36:21] [INFO] Thread ended: ID=5, Name=DestroyJavaVM
+[19:36:21] [INFO] VM shutting down.
+[19:36:21] [INFO] Thread ended: ID=3, Name=JVM++ Sampler
+[19:36:21] [INFO] === Profiling Report ===
+[19:36:21] [INFO] --- Top 20 Methods by Total Time ---
+[19:36:21] [INFO] Ljava/lang/ref/Reference$ReferenceHandler; :: run
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference; :: processPendingReferences
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/ref/Reference; :: waitForReferencePendingList
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: run
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: getConfigFile
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/io/UnixFileSystem; :: normalize
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljdk/internal/vm/PostVMInitHook; :: trackJavaUsage
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/io/File; :: <init>
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/String; :: indexOf
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] Ljava/lang/StringLatin1; :: indexOf
+    Calls: 1
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:21] [INFO] === End Of Report===
+[19:36:21] [INFO] --- Thread Summaries ---
+[19:36:21] [INFO] Thread ID=3, Name=JVM++ Sampler
+    Alive: 12.594 ms (ended)
+[19:36:21] [INFO] Thread ID=5, Name=DestroyJavaVM
+    Alive: 0.056 ms (ended)
+[19:36:21] [INFO] Thread ID=1, Name=main
+    Alive: 11.776 ms (ended)
+[19:36:21] [INFO] Thread ID=2, Name=Notification Thread
+    Alive: 12.801 ms (still running)
+[19:36:21] [INFO] Thread ID=4, Name=Common-Cleaner
+    Alive: 12.157 ms (still running)
+[19:36:21] [INFO] === End Of Thread Summaries ===
+[19:36:21] [INFO] --- Call Tree ---
+[19:36:21] [INFO] (no samples recorded)
+[19:36:21] [INFO] === End Of Call Tree ===
+[19:36:21] [INFO] JSON report written to: samples/output/Sample2/profiler.json
+[19:36:21] [INFO] Folded-stack report written to: samples/output/Sample2/profiler.folded
+[19:36:48] [INFO] Logger initialized to file: samples/output/Sample2/report.txt
+[19:36:48] [INFO] JSON report will be written to: samples/output/Sample2/profiler.json
+[19:36:48] [INFO] Folded-stack report will be written to: samples/output/Sample2/profiler.folded
+[19:36:48] [INFO] Successfully loaded and registered callbacks.
+[19:36:49] [INFO] VM initialized.
+[19:36:49] [INFO] Thread started: ID=1, Name=main
+[19:36:49] [INFO] Thread started: ID=2, Name=JVM++ Sampler
+[19:36:49] [INFO] Thread started: ID=3, Name=Notification Thread
+[19:36:49] [INFO] Thread started: ID=4, Name=Common-Cleaner
+[19:36:49] [INFO] Thread ended: ID=1, Name=main
+[19:36:49] [INFO] Thread started: ID=5, Name=DestroyJavaVM
+[19:36:49] [INFO] Thread ended: ID=5, Name=DestroyJavaVM
+[19:36:49] [INFO] VM shutting down.
+[19:36:49] [INFO] Thread ended: ID=2, Name=JVM++ Sampler
+[19:36:49] [INFO] === Profiling Report ===
+[19:36:49] [INFO] --- Top 20 Methods by Total Time ---
+[19:36:49] [INFO] LSample2; :: fib
+    Calls: 484
+    Total: 5806.420 ms
+    Self:  287.815 ms
+    Max Self Time: 12.545 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] LSample2; :: main
+    Calls: 24
+    Total: 287.815 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/ref/Reference$ReferenceHandler; :: run
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/ref/Reference; :: processPendingReferences
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] Ljava/lang/ref/Reference; :: waitForReferencePendingList
+    Calls: 25
+    Total: 0.000 ms
+    Self:  0.000 ms
+    Max Self Time: 0.000 ms
+    Min Self Time: 0.000 ms
+[19:36:49] [INFO] === End Of Report===
+[19:36:49] [INFO] --- Thread Summaries ---
+[19:36:49] [INFO] Thread ID=2, Name=JVM++ Sampler
+    Alive: 312.942 ms (ended)
+[19:36:49] [INFO] Thread ID=5, Name=DestroyJavaVM
+    Alive: 0.066 ms (ended)
+[19:36:49] [INFO] Thread ID=1, Name=main
+    Alive: 303.865 ms (ended)
+[19:36:49] [INFO] Thread ID=3, Name=Notification Thread
+    Alive: 313.088 ms (still running)
+[19:36:49] [INFO] Thread ID=4, Name=Common-Cleaner
+    Alive: 312.444 ms (still running)
+[19:36:49] [INFO] === End Of Thread Summaries ===
+[19:36:49] [INFO] --- Call Tree ---
+[19:36:49] [INFO] Sample2::main (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]   Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]     Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]       Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]         Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]           Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]             Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]               Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                 Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                   Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                     Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                       Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                         Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                           Sample2::fib (count=24, inclusive=100.0%, exclusive=0.0%)
+[19:36:49] [INFO]                             Sample2::fib (count=24, inclusive=100.0%, exclusive=4.4%)
+[19:36:49] [INFO]                               Sample2::fib (count=23, inclusive=95.6%, exclusive=0.0%)
+[19:36:49] [INFO]                                 Sample2::fib (count=23, inclusive=95.6%, exclusive=0.0%)
+[19:36:49] [INFO]                                   Sample2::fib (count=23, inclusive=95.6%, exclusive=0.0%)
+[19:36:49] [INFO]                                     Sample2::fib (count=23, inclusive=95.6%, exclusive=13.1%)
+[19:36:49] [INFO]                                       Sample2::fib (count=20, inclusive=82.6%, exclusive=0.0%)
+[19:36:49] [INFO]                                         Sample2::fib (count=20, inclusive=82.6%, exclusive=47.8%)
+[19:36:49] [INFO]                                           Sample2::fib (count=8, inclusive=34.8%, exclusive=0.0%)
+[19:36:49] [INFO]                                             Sample2::fib (count=8, inclusive=34.8%, exclusive=34.8%)
+[19:36:49] [INFO] java.lang.ref.Reference$ReferenceHandler::run (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:49] [INFO]   java.lang.ref.Reference::processPendingReferences (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:49] [INFO]     java.lang.ref.Reference::waitForReferencePendingList (count=25, inclusive=0.0%, exclusive=0.0%)
+[19:36:49] [INFO] === End Of Call Tree ===
+[19:36:49] [INFO] JSON report written to: samples/output/Sample2/profiler.json
+[19:36:49] [INFO] Folded-stack report written to: samples/output/Sample2/profiler.folded
