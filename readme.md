@@ -2,6 +2,17 @@
 
 A custom Java profiler built from scratch in C++ using the JVM Tool Interface (JVMTI). This project is built incrementally, focusing on low-overhead, thread-safe native profiling.
 
+Here are some examples of the outputs:
+#### Sample 1
+![Sample 1](./imgs/sample1.png "Sample 1")
+
+#### Sample 2
+![Sample 2](./imgs/sample2.png "Sample 1")
+
+#### Sample 3
+![Sample 3](./imgs/sample3.png "Sample 1")
+
+
 ## Prerequisites
 * C++17 compatible compiler (Clang/GCC/MSVC)
 * CMake (>= 3.10)
@@ -31,6 +42,7 @@ Agent options (comma-separated `key=value`, all optional):
 
 ---
 
+<<<<<<< Updated upstream
 ## Project Roadmap
 
 ### Core Infrastructure
@@ -83,3 +95,9 @@ Agent options (comma-separated `key=value`, all optional):
 ### Additional Notes
 - Using GLM to help scope and plan this out.
 - Some of the CPP might be questionable lol
+=======
+### Additional Notes
+- Using GLM to help scope and plan this out.
+- Some of the CPP might be questionable lol
+- perl script was found online to generate the flame graphs 
+>>>>>>> Stashed changes
